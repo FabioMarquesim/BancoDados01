@@ -1,3 +1,11 @@
+<%-- 
+    Document   : index
+    Created on : 07/11/2016, 16:08:16
+    Author     : fabio
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
