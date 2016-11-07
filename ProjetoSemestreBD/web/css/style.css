@@ -1,0 +1,21 @@
+/* 
+    Created on : 07/11/2016, 14:59:32
+    Author     : fabio
+*/
+h1{
+    font-size: 30px;
+    margin-left: 15px;
+}
+
+h2{
+   font-size: 18px; 
+   font-weight:  bold;
+}
+
+nav{
+    margin-bottom: 15px;
+}
+
+.box-integrante{
+    border-right: 2px solid gray;
+}
