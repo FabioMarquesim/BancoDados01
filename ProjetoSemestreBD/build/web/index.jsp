@@ -24,13 +24,9 @@
 
     </head>
     <body>
-
-        <c:if test="${uinfos == null}">
-            <form action="Controller" method="Post">
-                <input type="hidden" name="command" value="Usuario.carrega"/>
-                <input type="submit" name="Entrar" value="Entrar"/>                
-            </form>
-        </c:if>       
+        <c:if test="${user == null}">
+            <c:redirect url="login.jsp"></c:redirect>
+        </c:if>          
         <div class="container">
             <nav class="valign-wrapper">
                 <h1 class="valign center-align">Projeto do Semestre Banco de Dados 1</h1>
@@ -44,26 +40,86 @@
                             <p class="center-align">Lucas Portella - 31532632</p>
                             <p class="center-align">Pedro Manha - 31561942</p>
                             <p class="center-align">4G12</p>
+                            <p class="center-align"><a class="btn btn-large waves-effect" href="Controller?command=Usuario.logout">LOGOUT</a></p>
                         </div>
                     </div>
                 </div>
                 <div class="col s9">
                     <div class="row">
+
+                        <!-- Usuario -->
                         <div class="col s12">
+                            <h2 class="center-align" style="color: green;">Usuário: ${user.nome}</h2>
+                            <hr>                            
+                        </div>
+
+                        <!-- Filmes -->
+                        <div class="col s12">
+                            <h2 class="center-align">Filmes</h2>
                             <table>
                                 <thead>
                                     <tr>
                                         <th data-field="id">Nome</th>
-                                        <th>Usuario</th>
-                                        <th>Senha</th>
+                                        <th>Indicações</th>
+                                        <th>Sinopse</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach var="u" items="${uinfos}">
+                                    <c:forEach var="atracao" items="${atracoes}">
+                                        <c:if test="${atracao.idAtracao == atracao.filme.idFilme}">
+                                            <tr>
+                                                <td>${atracao.nome}</td>
+                                                <td>${atracao.filme.indicacoesoscar}</td>
+                                                <td>${atracao.sinopse}</td>
+                                            </tr>
+                                        </c:if>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                            <hr>
+                        </div>
+
+                        <!-- Series -->
+                        <div class="col s12">
+                            <h2 class="center-align">Séries</h2>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th data-field="id">Nome</th>
+                                        <th>Temporadas</th>
+                                        <th>Sinopse</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="atracao" items="${atracoes}">
+                                        <c:if test="${atracao.idAtracao == atracao.serie.idSerie}">
+                                            <tr>
+                                                <td>${atracao.nome}</td>
+                                                <td>${atracao.serie.numtemporadas}</td>
+                                                <td>${atracao.sinopse}</td>
+                                            </tr>
+                                        </c:if>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                            <hr>
+                        </div>
+
+                        <!-- Episodios -->
+                        <div class="col s12">
+                            <h2 class="center-align">Episódios</h2>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th data-field="id">Nome</th>
+                                        <th>Número</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="episodio" items="${episodios}">
                                         <tr>
-                                            <td>${u.nome}</td>
-                                            <td>${u.usuario}</td>
-                                            <td>${u.senha}</td>
+                                            <td>${episodio.nome}</td>
+                                            <td>${episodio.idEpisodio}</td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
