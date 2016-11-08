@@ -5,6 +5,7 @@
  */
 package com.br.bd.controller;
 
+import com.br.bd.controller.command.Command;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,10 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.br.bd.model.dao.UsuarioinfoDAO;
-import com.br.bd.model.entities.Usuarioinfo;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,22 +37,16 @@ public class Controller extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            String commandstr = request.getParameter("command");
+            String commandstr = request.getParameter("command").split("\\.")[0];
 
-            switch (commandstr) {
-                case "usuario":
-                    
-                    UsuarioinfoDAO udao = new UsuarioinfoDAO();
-                    
-                    List<Usuarioinfo> usuarios = udao.findAll();
-                    
-                    request.getSession().setAttribute("usuariosinfo", usuarios);
-                    response.sendRedirect("index.jsp");
-                    break;
-                default:
-                    response.sendRedirect("index.jsp");
-                    break;
-            }           
+            try {
+                Command command = (Command) Class.forName("com.br.bd.controller.command." + commandstr + "Command").newInstance();
+                command.init(request, response);
+                command.execute();
+                response.sendRedirect(command.getResponsePage());
+            } catch (InstantiationException | IllegalAccessException | ClassNotFoundException ex) {
+                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
     }

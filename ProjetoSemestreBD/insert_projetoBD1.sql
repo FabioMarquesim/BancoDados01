@@ -6,10 +6,10 @@ insert into USUARIOINFO values (5, 'Alexandre', 'alexandre@outlook.com', '944526
 
 
 insert into ATRACAO values (1001, 'Clube da Luta', 'Filme com Edward Norton', 1);
-insert into ATRACAO values (1002, 'Interstellar', 'Filme sobre dimensões', 1);
+insert into ATRACAO values (1002, 'Interstellar', 'Filme sobre dimensoes', 1);
 insert into ATRACAO values (1003, 'Silicon Valley', 'Serie de comedia no Vale do Silicio', 3);
 insert into ATRACAO values (1004, 'Mr Robot', 'Serie sobre um hacker', 4);
-insert into ATRACAO values (1005, 'Inception', 'Filme sobre dimensões no sonho', 2);
+insert into ATRACAO values (1005, 'Inception', 'Filme sobre dimensoes no sonho', 2);
 insert into ATRACAO values (1006, 'Harry Potter: 1', 'Filme sobre bruxos', 5);
 
 
@@ -31,4 +31,3 @@ insert into EPISODIO(ID_EPISODIO, NOME, FK_SERIE) values (104, 'Hello, Friend', 
 insert into EPISODIO(ID_EPISODIO, NOME, FK_SERIE) values (105, 'Ones and Zeros', 1004);
 insert into EPISODIO(ID_EPISODIO, NOME, FK_SERIE) values (106, 'D3bug', 1004);
 insert into EPISODIO(ID_EPISODIO, NOME, FK_SERIE) values (107, 'Da3m0ns', 1004);
-

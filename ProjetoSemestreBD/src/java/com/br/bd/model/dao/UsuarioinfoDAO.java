@@ -12,7 +12,6 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
-import javax.persistence.Query;
 
 /**
  *
@@ -25,10 +24,13 @@ public class UsuarioinfoDAO implements GenericDAO<Usuarioinfo> {
     @PersistenceContext(unitName = "ProjetoSemestreBDPU", type = PersistenceContextType.TRANSACTION)
     private EntityManager em;
 
+    public Usuarioinfo findById(int id){
+        return em.find(Usuarioinfo.class, id);
+    }
+    
     @Override
     public List<Usuarioinfo> findAll() {
-        Query query = em.createNamedQuery("Usuarioinfo.findAll");
-        return query.getResultList();
+        return em.createNamedQuery("Usuarioinfo.findAll", Usuarioinfo.class).getResultList();
     }
 
 }

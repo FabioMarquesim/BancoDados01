@@ -24,10 +24,13 @@
 
     </head>
     <body>
-        
-        <c:if test="${usuarios == null}">
-            <c:redirect url="/Controller?command=usuario"></c:redirect>
-        </c:if>        
+
+        <c:if test="${uinfos == null}">
+            <form action="Controller" method="Post">
+                <input type="hidden" name="command" value="Usuario.carrega"/>
+                <input type="submit" name="Entrar" value="Entrar"/>                
+            </form>
+        </c:if>       
         <div class="container">
             <nav class="valign-wrapper">
                 <h1 class="valign center-align">Projeto do Semestre Banco de Dados 1</h1>
@@ -56,12 +59,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach var="u" items="${usuarios}">
-                                    <tr>
-                                        <td>${u.nome}</td>
-                                        <td>${u.usuario}</td>
-                                        <td>${u.senha}</td>
-                                    </tr>
+                                    <c:forEach var="u" items="${uinfos}">
+                                        <tr>
+                                            <td>${u.nome}</td>
+                                            <td>${u.usuario}</td>
+                                            <td>${u.senha}</td>
+                                        </tr>
                                     </c:forEach>
                                 </tbody>
                             </table>
@@ -70,7 +73,6 @@
                 </div>
             </div>
         </div>
-
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="materialize/js/materialize.min.js"></script>        
