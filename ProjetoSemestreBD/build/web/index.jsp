@@ -24,6 +24,10 @@
 
     </head>
     <body>
+        
+        <c:if test="${usuarios == null}">
+            <c:redirect url="/Controller?command=usuario"></c:redirect>
+        </c:if>        
         <div class="container">
             <nav class="valign-wrapper">
                 <h1 class="valign center-align">Projeto do Semestre Banco de Dados 1</h1>
@@ -46,22 +50,19 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th data-field="id">Teste 1</th>
-                                        <th>Teste 2</th>
-                                        <th>Teste 3</th>
+                                        <th data-field="id">Nome</th>
+                                        <th>Usuario</th>
+                                        <th>Senha</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <c:forEach var="u" items="${usuarios}">
                                     <tr>
-                                        <td>xxxx</td>
-                                        <td>wwww</td>
-                                        <td>qqqqq</td>
+                                        <td>${u.nome}</td>
+                                        <td>${u.usuario}</td>
+                                        <td>${u.senha}</td>
                                     </tr>
-                                    <tr>
-                                        <td>yyyyy</td>
-                                        <td>cccccc</td>
-                                        <td>ggggg</td>
-                                    </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>

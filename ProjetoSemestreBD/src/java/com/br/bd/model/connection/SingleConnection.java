@@ -19,7 +19,7 @@ public class SingleConnection {
     
     //Parametros de conexao
     public static final String driver = "oracle.jdbc.OracleDriver";
-    private static final String db = "XE";
+    private static final String db = "xe";
     private static final String username = "system";
     private static final String password = "system";
     private static final String protocol = "jdbc:oracle:thin:@localhost:1521:";
@@ -35,6 +35,7 @@ public class SingleConnection {
             //Estabelecer a conexao
             Class.forName(driver).newInstance();
             connection = DriverManager.getConnection(protocol+db, username, password);
+            System.out.println("Conectado!!");
 
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
             Logger.getLogger(SingleConnection.class.getName()).log(Level.SEVERE, null, ex);

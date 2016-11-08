@@ -12,6 +12,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.br.bd.model.dao.UsuarioinfoDAO;
+import com.br.bd.model.entities.Usuarioinfo;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -33,9 +37,24 @@ public class Controller extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            response.sendRedirect("index.jsp");
-            
+
+            String commandstr = request.getParameter("command");
+
+            switch (commandstr) {
+                case "usuario":
+                    
+                    UsuarioinfoDAO udao = new UsuarioinfoDAO();
+                    
+                    List<Usuarioinfo> usuarios = udao.findAll();
+                    
+                    request.getSession().setAttribute("usuariosinfo", usuarios);
+                    response.sendRedirect("index.jsp");
+                    break;
+                default:
+                    response.sendRedirect("index.jsp");
+                    break;
+            }           
+
         }
     }
 
